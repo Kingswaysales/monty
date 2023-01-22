@@ -1,10 +1,10 @@
 #include "monty.h"
 
 /**
- * pall - Prints all the value on the stack
- * Starting from the top of the stack
+ * pall - prints all the value on the stack
+ * starting from the top of the stack
  * @stack: the head of the stack
- * @line_number: The line on which the error occured
+ * @line_number: the line on which the error occured
  * Return: Nothing
  */
 void pall(stack_t **stack, unsigned int line_number)

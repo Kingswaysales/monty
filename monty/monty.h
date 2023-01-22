@@ -1,5 +1,5 @@
-#ifndef _MONTY_
-#define _MONTY_
+#ifndef _MONTY_H
+#define _MONTY_H
 
 /* Constants */
 #define SUCSS_OP		0
@@ -28,20 +28,21 @@
 #define ERR_PCH_USG		211
 #define ERR_PCH_EMP		212
 
-#include <ctype.h>
-#include <fcntl.h>
-#include <stdlib.h>
+#define _GNU_SOURCE
 #include <stdio.h>
-#include <string.h>
 #include <unistd.h>
+#include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <stdarg.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
- * @prev: points to the previous element of the stack (or queue)
- * @next: points to the next element of the stack (or queue)
+ * @next: points to the previous element of the stack (or queue)
+ * @prev: points to the next element of the stack (or queue)
  * Description: doubly linked list node structure
- * for stack, queues, LIFO, FIFO Holberton project
+ * for stack, queue, LIFO, FIFO
  */
 typedef struct stack_s
 {
@@ -53,9 +54,9 @@ typedef struct stack_s
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
- * @f: function to handle the opcode
+ * @f: function to handl the opcode
  * Description: opcode and its function
- * for stack, queues, LIFO, FIFO Holberton project
+ * for stack, queue, LIFO, FIFO
  */
 typedef struct instruction_s
 {
@@ -63,8 +64,38 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-extern stack_t *head;
+extern stack_t *list;
+typedef void (*op_func)(stack_t **, unsigned int);
 
+/* Stack functions and operations */
+void push(stack_t **, unsigned int);
+void pall(stack_t **, unsigned int);
+void pop(stack_t **, unsigned int);
+void pint(stack_t **, unsigned int);
+void swap(stack_t **, unsigned int);
+
+/* Stack Arthemtic Operations */
+void _add(stack_t **, unsigned int);
+void _sub(stack_t **, unsigned int);
+void _mul(stack_t **, unsigned int);
+void _div(stack_t **, unsigned int);
+void _mod(stack_t **, unsigned int);
+
+/* Helper functions */
+void nop(stack_t **, unsigned int);
+/* Default function - do nothing */
+void free_nodes(void);
+void add_queue(stack_t **, unsigned int);
+stack_t *new_node(int n);
+void execute(op_func, char *, char *, int, int);
+void check_monty(char *, char*, int, int);
+int monty_parser(char *, int, int);
+
+/* String functions */
+void print_char(stack_t **, unsigned int);
+void print_str(stack_t **, unsigned int);
+void rotl(stack_t **, unsigned int);
+void rotr(stack_t **, unsigned int);
 void check_args_num(int argn);
 FILE *open_file(char *filename);
 void check_access_rights(char *filename);
@@ -80,19 +111,5 @@ void (*pick_func(char *s))(stack_t **, unsigned int);
 unsigned int count_stack(stack_t *stack);
 void push(stack_t **stack, unsigned int param);
 void push_queue(stack_t **stack, unsigned int param);
-void pall(stack_t **stack, unsigned int line_number);
-void pint(stack_t **stack, unsigned int line_number);
-void pop(stack_t **stack, unsigned int line_number);
-void swap(stack_t **stack, unsigned int line_number);
-void add(stack_t **stack, unsigned int line_number);
-void nop(stack_t **stack, unsigned int line_number);
-void sub(stack_t **stack, unsigned int line_number);
-void divide(stack_t **stack, unsigned int line_number);
-void mul(stack_t **stack, unsigned int line_number);
-void mod(stack_t **stack, unsigned int line_number);
-void pchar(stack_t **stack, unsigned int line_number);
-void pstr(stack_t **stack, unsigned int line_number);
-void rotl(stack_t **stack, unsigned int line_number);
-void rotr(stack_t **stack, unsigned int line_number);
 
 #endif

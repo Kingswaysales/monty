@@ -4,7 +4,7 @@
  * push - adds a new node at the beginning of the stack
  * @stack: the head of the stack
  * @param: the value to adds on the stack
- * Return: Nothin
+ * Return: Nothing
  */
 void push(stack_t **stack, unsigned int param)
 {
@@ -30,8 +30,8 @@ void push(stack_t **stack, unsigned int param)
 }
 
 /**
- * push_queue - adds a new node at the end of the stack
- * @stack: the head of the stack
+ * push_queue - Adds a new node at the end of the stack
+ * @stack: The head of the stack
  * @param: The value to adds on the stack
  * Return: Nothing
  */
